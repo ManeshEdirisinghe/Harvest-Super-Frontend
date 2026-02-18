@@ -1,0 +1,133 @@
+<div class="p-4 sm:ml-64 mt-14">
+  <div class="p-4">
+
+    <!-- Header -->
+    <div class="flex items-center justify-between mb-6">
+      <h1 class="text-2xl font-bold text-heading">Orders</h1>
+      <button (click)="showForm = !showForm"
+        class="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 transition-colors">
+        {{ showForm ? 'Close Form' : '+ Add Order' }}
+      </button>
+    </div>
+
+    <!-- Add Order Form -->
+    @if (showForm) {
+      <div class="mb-6 p-6 bg-neutral-primary-medium border border-default rounded-lg shadow-sm">
+        <h2 class="text-lg font-semibold text-heading mb-4">Add New Order</h2>
+        <form (ngSubmit)="addOrder()" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label class="block mb-1 text-sm font-medium text-body">Customer Name</label>
+            <input type="text" [(ngModel)]="newOrder.customerName" name="customerName" required
+              class="w-full px-3 py-2 text-sm text-heading bg-neutral-primary-soft border border-default rounded-lg focus:ring-blue-500 focus:border-blue-500"
+              placeholder="Enter customer name">
+          </div>
+          <div>
+            <label class="block mb-1 text-sm font-medium text-body">Item Name</label>
+            <input type="text" [(ngModel)]="newOrder.itemName" name="itemName" required
+              class="w-full px-3 py-2 text-sm text-heading bg-neutral-primary-soft border border-default rounded-lg focus:ring-blue-500 focus:border-blue-500"
+              placeholder="Enter item name">
+          </div>
+          <div>
+            <label class="block mb-1 text-sm font-medium text-body">Quantity</label>
+            <input type="number" [(ngModel)]="newOrder.qty" name="qty" required min="1"
+              class="w-full px-3 py-2 text-sm text-heading bg-neutral-primary-soft border border-default rounded-lg focus:ring-blue-500 focus:border-blue-500"
+              placeholder="0">
+          </div>
+          <div>
+            <label class="block mb-1 text-sm font-medium text-body">Unit Price (Rs.)</label>
+            <input type="number" [(ngModel)]="newOrder.unitPrice" name="unitPrice" required min="0" step="0.01"
+              class="w-full px-3 py-2 text-sm text-heading bg-neutral-primary-soft border border-default rounded-lg focus:ring-blue-500 focus:border-blue-500"
+              placeholder="0.00">
+          </div>
+          <div>
+            <label class="block mb-1 text-sm font-medium text-body">Order Date</label>
+            <input type="date" [(ngModel)]="newOrder.date" name="date" required
+              class="w-full px-3 py-2 text-sm text-heading bg-neutral-primary-soft border border-default rounded-lg focus:ring-blue-500 focus:border-blue-500">
+          </div>
+          <div>
+            <label class="block mb-1 text-sm font-medium text-body">Status</label>
+            <select [(ngModel)]="newOrder.status" name="status" required
+              class="w-full px-3 py-2 text-sm text-heading bg-neutral-primary-soft border border-default rounded-lg focus:ring-blue-500 focus:border-blue-500">
+              <option value="" disabled>Select status</option>
+              <option value="Pending">Pending</option>
+              <option value="Processing">Processing</option>
+              <option value="Completed">Completed</option>
+              <option value="Cancelled">Cancelled</option>
+            </select>
+          </div>
+          <div class="md:col-span-2 flex gap-3 mt-2">
+            <button type="submit"
+              class="px-5 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 focus:ring-4 focus:ring-blue-300">
+              Save Order
+            </button>
+            <button type="button" (click)="showForm = false"
+              class="px-5 py-2 text-sm font-medium text-body bg-neutral-secondary-medium border border-default rounded-lg hover:bg-neutral-tertiary">
+              Cancel
+            </button>
+          </div>
+        </form>
+      </div>
+    }
+
+    <!-- Orders Table -->
+    <div class="relative overflow-x-auto shadow-sm rounded-lg border border-default">
+      <table class="w-full text-sm text-left text-body">
+        <thead class="text-xs text-heading uppercase bg-neutral-secondary-soft border-b border-default">
+          <tr>
+            <th scope="col" class="px-6 py-3">#</th>
+            <th scope="col" class="px-6 py-3">Customer</th>
+            <th scope="col" class="px-6 py-3">Item</th>
+            <th scope="col" class="px-6 py-3">Qty</th>
+            <th scope="col" class="px-6 py-3">Unit Price (Rs.)</th>
+            <th scope="col" class="px-6 py-3">Total (Rs.)</th>
+            <th scope="col" class="px-6 py-3">Date</th>
+            <th scope="col" class="px-6 py-3">Status</th>
+            <th scope="col" class="px-6 py-3">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (order of orders; track order; let i = $index) {
+            <tr class="bg-neutral-primary-medium border-b border-default hover:bg-neutral-secondary-soft transition-colors">
+              <td class="px-6 py-4 font-medium text-heading">{{ i + 1 }}</td>
+              <td class="px-6 py-4">{{ order.customerName }}</td>
+              <td class="px-6 py-4">{{ order.itemName }}</td>
+              <td class="px-6 py-4">{{ order.qty }}</td>
+              <td class="px-6 py-4">{{ order.unitPrice | number:'1.2-2' }}</td>
+              <td class="px-6 py-4 font-semibold text-heading">{{ order.qty * order.unitPrice | number:'1.2-2' }}</td>
+              <td class="px-6 py-4">{{ order.date }}</td>
+              <td class="px-6 py-4">
+                @switch (order.status) {
+                  @case ('Pending') {
+                    <span class="px-2 py-0.5 text-xs font-medium rounded-full bg-yellow-100 text-yellow-800">Pending</span>
+                  }
+                  @case ('Processing') {
+                    <span class="px-2 py-0.5 text-xs font-medium rounded-full bg-blue-100 text-blue-800">Processing</span>
+                  }
+                  @case ('Completed') {
+                    <span class="px-2 py-0.5 text-xs font-medium rounded-full bg-green-100 text-green-800">Completed</span>
+                  }
+                  @case ('Cancelled') {
+                    <span class="px-2 py-0.5 text-xs font-medium rounded-full bg-red-100 text-red-800">Cancelled</span>
+                  }
+                }
+              </td>
+              <td class="px-6 py-4">
+                <button (click)="deleteOrder(i)" class="text-red-500 hover:text-red-700 font-medium text-sm">Delete</button>
+              </td>
+            </tr>
+          } @empty {
+            <tr>
+              <td colspan="9" class="px-6 py-8 text-center text-body">No orders found. Click "Add Order" to get started.</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Summary -->
+    <div class="mt-4 text-sm text-body">
+      Total Orders: <span class="font-semibold text-heading">{{ orders.length }}</span>
+    </div>
+
+  </div>
+</div>

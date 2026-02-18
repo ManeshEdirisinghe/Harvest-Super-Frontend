@@ -9,7 +9,7 @@ import { initFlowbite } from 'flowbite';
   styleUrl: './app.css'
 })
 export class App implements OnInit {
-  title = 'web-app';
+  title = 'Harvest Super';
   ngOnInit(): void {
     initFlowbite();
   }
