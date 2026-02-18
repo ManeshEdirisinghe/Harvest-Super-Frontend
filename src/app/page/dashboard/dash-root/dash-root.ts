@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-dash-root',
-  imports: [RouterOutlet],
+  imports: [RouterLink],
   templateUrl: './dash-root.html',
   styleUrl: './dash-root.css',
 })

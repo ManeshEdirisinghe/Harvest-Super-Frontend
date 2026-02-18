@@ -1,53 +1,52 @@
-<div class="p-4 sm:ml-64 mt-14">
-  <div class="p-4">
+<div class="p-6">
 
-    <!-- Header -->
-    <div class="flex items-center justify-between mb-6">
-      <h1 class="text-2xl font-bold text-heading">Orders</h1>
-      <button (click)="showForm = !showForm"
-        class="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 transition-colors">
-        {{ showForm ? 'Close Form' : '+ Add Order' }}
-      </button>
-    </div>
+  <!-- Header -->
+  <div class="flex items-center justify-between mb-6">
+    <h1 class="text-2xl font-bold text-gray-800">Orders</h1>
+    <button (click)="showForm = !showForm"
+      class="px-4 py-2 text-sm font-medium text-white bg-green-600 rounded-lg hover:bg-green-700 focus:ring-4 focus:ring-green-300 transition shadow-md">
+      {{ showForm ? 'Close Form' : '+ Add Order' }}
+    </button>
+  </div>
 
     <!-- Add Order Form -->
     @if (showForm) {
-      <div class="mb-6 p-6 bg-neutral-primary-medium border border-default rounded-lg shadow-sm">
-        <h2 class="text-lg font-semibold text-heading mb-4">Add New Order</h2>
+      <div class="mb-6 p-6 bg-white border border-gray-200 rounded-2xl shadow-md">
+        <h2 class="text-lg font-bold text-gray-800 mb-4">Add New Order</h2>
         <form (ngSubmit)="addOrder()" class="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
-            <label class="block mb-1 text-sm font-medium text-body">Customer Name</label>
+            <label class="block mb-1 text-sm font-medium text-gray-700">Customer Name</label>
             <input type="text" [(ngModel)]="newOrder.customerName" name="customerName" required
-              class="w-full px-3 py-2 text-sm text-heading bg-neutral-primary-soft border border-default rounded-lg focus:ring-blue-500 focus:border-blue-500"
+              class="w-full px-3 py-2.5 text-sm text-gray-900 bg-gray-50 border border-gray-300 rounded-lg focus:ring-green-500 focus:border-green-500"
               placeholder="Enter customer name">
           </div>
           <div>
-            <label class="block mb-1 text-sm font-medium text-body">Item Name</label>
+            <label class="block mb-1 text-sm font-medium text-gray-700">Item Name</label>
             <input type="text" [(ngModel)]="newOrder.itemName" name="itemName" required
-              class="w-full px-3 py-2 text-sm text-heading bg-neutral-primary-soft border border-default rounded-lg focus:ring-blue-500 focus:border-blue-500"
+              class="w-full px-3 py-2.5 text-sm text-gray-900 bg-gray-50 border border-gray-300 rounded-lg focus:ring-green-500 focus:border-green-500"
               placeholder="Enter item name">
           </div>
           <div>
-            <label class="block mb-1 text-sm font-medium text-body">Quantity</label>
+            <label class="block mb-1 text-sm font-medium text-gray-700">Quantity</label>
             <input type="number" [(ngModel)]="newOrder.qty" name="qty" required min="1"
-              class="w-full px-3 py-2 text-sm text-heading bg-neutral-primary-soft border border-default rounded-lg focus:ring-blue-500 focus:border-blue-500"
+              class="w-full px-3 py-2.5 text-sm text-gray-900 bg-gray-50 border border-gray-300 rounded-lg focus:ring-green-500 focus:border-green-500"
               placeholder="0">
           </div>
           <div>
-            <label class="block mb-1 text-sm font-medium text-body">Unit Price (Rs.)</label>
+            <label class="block mb-1 text-sm font-medium text-gray-700">Unit Price (Rs.)</label>
             <input type="number" [(ngModel)]="newOrder.unitPrice" name="unitPrice" required min="0" step="0.01"
-              class="w-full px-3 py-2 text-sm text-heading bg-neutral-primary-soft border border-default rounded-lg focus:ring-blue-500 focus:border-blue-500"
+              class="w-full px-3 py-2.5 text-sm text-gray-900 bg-gray-50 border border-gray-300 rounded-lg focus:ring-green-500 focus:border-green-500"
               placeholder="0.00">
           </div>
           <div>
-            <label class="block mb-1 text-sm font-medium text-body">Order Date</label>
+            <label class="block mb-1 text-sm font-medium text-gray-700">Order Date</label>
             <input type="date" [(ngModel)]="newOrder.date" name="date" required
-              class="w-full px-3 py-2 text-sm text-heading bg-neutral-primary-soft border border-default rounded-lg focus:ring-blue-500 focus:border-blue-500">
+              class="w-full px-3 py-2.5 text-sm text-gray-900 bg-gray-50 border border-gray-300 rounded-lg focus:ring-green-500 focus:border-green-500">
           </div>
           <div>
-            <label class="block mb-1 text-sm font-medium text-body">Status</label>
+            <label class="block mb-1 text-sm font-medium text-gray-700">Status</label>
             <select [(ngModel)]="newOrder.status" name="status" required
-              class="w-full px-3 py-2 text-sm text-heading bg-neutral-primary-soft border border-default rounded-lg focus:ring-blue-500 focus:border-blue-500">
+              class="w-full px-3 py-2.5 text-sm text-gray-900 bg-gray-50 border border-gray-300 rounded-lg focus:ring-green-500 focus:border-green-500">
               <option value="" disabled>Select status</option>
               <option value="Pending">Pending</option>
               <option value="Processing">Processing</option>
@@ -57,11 +56,11 @@
           </div>
           <div class="md:col-span-2 flex gap-3 mt-2">
             <button type="submit"
-              class="px-5 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 focus:ring-4 focus:ring-blue-300">
+              class="px-5 py-2.5 text-sm font-semibold text-white bg-green-600 rounded-lg hover:bg-green-700 focus:ring-4 focus:ring-green-300 transition shadow-md">
               Save Order
             </button>
             <button type="button" (click)="showForm = false"
-              class="px-5 py-2 text-sm font-medium text-body bg-neutral-secondary-medium border border-default rounded-lg hover:bg-neutral-tertiary">
+              class="px-5 py-2.5 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition">
               Cancel
             </button>
           </div>
@@ -70,9 +69,9 @@
     }
 
     <!-- Orders Table -->
-    <div class="relative overflow-x-auto shadow-sm rounded-lg border border-default">
-      <table class="w-full text-sm text-left text-body">
-        <thead class="text-xs text-heading uppercase bg-neutral-secondary-soft border-b border-default">
+    <div class="relative overflow-x-auto shadow-md rounded-lg border border-gray-200">
+      <table class="w-full text-sm text-left text-gray-600">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 border-b border-gray-200">
           <tr>
             <th scope="col" class="px-6 py-3">#</th>
             <th scope="col" class="px-6 py-3">Customer</th>
@@ -87,13 +86,13 @@
         </thead>
         <tbody>
           @for (order of orders; track order; let i = $index) {
-            <tr class="bg-neutral-primary-medium border-b border-default hover:bg-neutral-secondary-soft transition-colors">
-              <td class="px-6 py-4 font-medium text-heading">{{ i + 1 }}</td>
+            <tr class="bg-white border-b border-gray-100 hover:bg-green-50 transition">
+              <td class="px-6 py-4 font-medium text-gray-800">{{ i + 1 }}</td>
               <td class="px-6 py-4">{{ order.customerName }}</td>
               <td class="px-6 py-4">{{ order.itemName }}</td>
               <td class="px-6 py-4">{{ order.qty }}</td>
               <td class="px-6 py-4">{{ order.unitPrice | number:'1.2-2' }}</td>
-              <td class="px-6 py-4 font-semibold text-heading">{{ order.qty * order.unitPrice | number:'1.2-2' }}</td>
+              <td class="px-6 py-4 font-semibold text-gray-800">{{ order.qty * order.unitPrice | number:'1.2-2' }}</td>
               <td class="px-6 py-4">{{ order.date }}</td>
               <td class="px-6 py-4">
                 @switch (order.status) {
@@ -117,7 +116,7 @@
             </tr>
           } @empty {
             <tr>
-              <td colspan="9" class="px-6 py-8 text-center text-body">No orders found. Click "Add Order" to get started.</td>
+              <td colspan="9" class="px-6 py-8 text-center text-gray-500">No orders found. Click "Add Order" to get started.</td>
             </tr>
           }
         </tbody>
@@ -125,9 +124,8 @@
     </div>
 
     <!-- Summary -->
-    <div class="mt-4 text-sm text-body">
-      Total Orders: <span class="font-semibold text-heading">{{ orders.length }}</span>
+    <div class="mt-4 text-sm text-gray-500">
+      Total Orders: <span class="font-semibold text-gray-800">{{ orders.length }}</span>
     </div>
 
-  </div>
 </div>

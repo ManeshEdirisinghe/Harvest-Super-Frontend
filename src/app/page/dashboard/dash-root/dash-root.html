@@ -1,2 +1,276 @@
-<p>dash-root works!sdkjcn zso;cjvn;slzcnv;osxnv;oskx vojwnzcvo;ijeasrpovi esopu heosrj vhlsjf owej f vlwje ljesf vljsdf ljwef jnwlke fj po4etihgijepotigj o;eijtpogi ejpto;gij eoti eoitjgo eirttpgoi otgj eoeitj goertjpgo po ; spfo owergpo w44po bwupows h</p>
-<router-outlet></router-outlet>
+<div class="p-6">
+
+  <!-- Welcome Banner -->
+  <div class="mb-6 p-6 bg-gradient-to-r from-green-500 to-green-700 rounded-2xl shadow-lg text-white">
+    <h1 class="text-2xl font-bold mb-1">Welcome to Harvest Super</h1>
+    <p class="text-green-100 text-sm">Here's an overview of your store today.</p>
+  </div>
+
+  <!-- Stats Cards -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 mb-6">
+
+    <!-- Total Customers -->
+    <div class="flex items-center p-5 bg-white border border-gray-200 rounded-lg shadow-md">
+      <div class="p-3 mr-4 bg-green-100 text-green-600 rounded-full">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/>
+        </svg>
+      </div>
+      <div>
+        <p class="text-sm font-medium text-gray-500">Total Customers</p>
+        <p class="text-2xl font-bold text-gray-800">1,254</p>
+      </div>
+    </div>
+
+    <!-- Total Items -->
+    <div class="flex items-center p-5 bg-white border border-gray-200 rounded-lg shadow-md">
+      <div class="p-3 mr-4 bg-green-100 text-green-600 rounded-full">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/>
+        </svg>
+      </div>
+      <div>
+        <p class="text-sm font-medium text-gray-500">Total Items</p>
+        <p class="text-2xl font-bold text-gray-800">386</p>
+      </div>
+    </div>
+
+    <!-- Total Orders -->
+    <div class="flex items-center p-5 bg-white border border-gray-200 rounded-lg shadow-md">
+      <div class="p-3 mr-4 bg-orange-100 text-orange-600 rounded-full">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
+        </svg>
+      </div>
+      <div>
+        <p class="text-sm font-medium text-gray-500">Total Orders</p>
+        <p class="text-2xl font-bold text-gray-800">2,847</p>
+      </div>
+    </div>
+
+    <!-- Revenue -->
+    <div class="flex items-center p-5 bg-white border border-gray-200 rounded-lg shadow-md">
+      <div class="p-3 mr-4 bg-green-100 text-green-600 rounded-full">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+        </svg>
+      </div>
+      <div>
+        <p class="text-sm font-medium text-gray-500">Revenue</p>
+        <p class="text-2xl font-bold text-gray-800">Rs. 1.2M</p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Quick Actions & Recent Orders -->
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
+
+    <!-- Quick Actions -->
+    <div class="p-5 bg-white border border-gray-200 rounded-lg shadow-md">
+      <h2 class="text-lg font-bold text-gray-800 mb-4">Quick Actions</h2>
+      <div class="space-y-3">
+        <a routerLink="/dashboard/customer"
+          class="flex items-center p-3 rounded-lg bg-gray-50 hover:bg-green-50 transition group">
+          <div class="p-2 mr-3 bg-green-100 text-green-600 rounded-lg">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M18 7.5v3m0 0v3m0-3h3m-3 0h-3m-2.25-4.125a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zM3 19.235v-.11a6.375 6.375 0 0112.75 0v.109A12.318 12.318 0 019.374 21c-2.331 0-4.512-.645-6.374-1.766z"/>
+            </svg>
+          </div>
+          <div>
+            <p class="text-sm font-medium text-gray-800 group-hover:text-green-700">Add New Customer</p>
+            <p class="text-xs text-gray-500">Register a new customer</p>
+          </div>
+        </a>
+        <a routerLink="/dashboard/item"
+          class="flex items-center p-3 rounded-lg bg-gray-50 hover:bg-green-50 transition group">
+          <div class="p-2 mr-3 bg-green-100 text-green-600 rounded-lg">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+          </div>
+          <div>
+            <p class="text-sm font-medium text-gray-800 group-hover:text-green-700">Add New Item</p>
+            <p class="text-xs text-gray-500">Add product to inventory</p>
+          </div>
+        </a>
+        <a routerLink="/dashboard/order"
+          class="flex items-center p-3 rounded-lg bg-gray-50 hover:bg-green-50 transition group">
+          <div class="p-2 mr-3 bg-orange-100 text-orange-600 rounded-lg">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+          </div>
+          <div>
+            <p class="text-sm font-medium text-gray-800 group-hover:text-green-700">Create Order</p>
+            <p class="text-xs text-gray-500">Place a new order</p>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <!-- Recent Orders -->
+    <div class="lg:col-span-2 p-5 bg-white border border-gray-200 rounded-lg shadow-md">
+      <div class="flex items-center justify-between mb-4">
+        <h2 class="text-lg font-bold text-gray-800">Recent Orders</h2>
+        <a routerLink="/dashboard/order" class="text-sm font-medium text-green-600 hover:text-green-700 hover:underline">View all</a>
+      </div>
+      <div class="relative overflow-x-auto rounded-lg">
+        <table class="w-full text-sm text-left text-gray-600">
+          <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+            <tr>
+              <th class="px-4 py-3">Order</th>
+              <th class="px-4 py-3">Customer</th>
+              <th class="px-4 py-3">Item</th>
+              <th class="px-4 py-3">Amount</th>
+              <th class="px-4 py-3">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border-b border-gray-100">
+              <td class="px-4 py-3 font-medium text-gray-800">#1001</td>
+              <td class="px-4 py-3">Kamal Perera</td>
+              <td class="px-4 py-3">Rice 5kg</td>
+              <td class="px-4 py-3">Rs. 1,250.00</td>
+              <td class="px-4 py-3"><span class="px-2 py-0.5 text-xs font-medium rounded-full bg-green-100 text-green-800">Completed</span></td>
+            </tr>
+            <tr class="border-b border-gray-100">
+              <td class="px-4 py-3 font-medium text-gray-800">#1002</td>
+              <td class="px-4 py-3">Nimal Silva</td>
+              <td class="px-4 py-3">Sugar 1kg</td>
+              <td class="px-4 py-3">Rs. 320.00</td>
+              <td class="px-4 py-3"><span class="px-2 py-0.5 text-xs font-medium rounded-full bg-yellow-100 text-yellow-800">Pending</span></td>
+            </tr>
+            <tr class="border-b border-gray-100">
+              <td class="px-4 py-3 font-medium text-gray-800">#1003</td>
+              <td class="px-4 py-3">Saman Fernando</td>
+              <td class="px-4 py-3">Milk 1L</td>
+              <td class="px-4 py-3">Rs. 480.00</td>
+              <td class="px-4 py-3"><span class="px-2 py-0.5 text-xs font-medium rounded-full bg-blue-100 text-blue-800">Processing</span></td>
+            </tr>
+            <tr class="border-b border-gray-100">
+              <td class="px-4 py-3 font-medium text-gray-800">#1004</td>
+              <td class="px-4 py-3">Amara Jayasinghe</td>
+              <td class="px-4 py-3">Tea 200g</td>
+              <td class="px-4 py-3">Rs. 650.00</td>
+              <td class="px-4 py-3"><span class="px-2 py-0.5 text-xs font-medium rounded-full bg-green-100 text-green-800">Completed</span></td>
+            </tr>
+            <tr>
+              <td class="px-4 py-3 font-medium text-gray-800">#1005</td>
+              <td class="px-4 py-3">Dilani Wickrama</td>
+              <td class="px-4 py-3">Bread</td>
+              <td class="px-4 py-3">Rs. 180.00</td>
+              <td class="px-4 py-3"><span class="px-2 py-0.5 text-xs font-medium rounded-full bg-red-100 text-red-800">Cancelled</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Top Selling & Low Stock -->
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+
+    <!-- Top Selling Items -->
+    <div class="p-5 bg-white border border-gray-200 rounded-lg shadow-md">
+      <h2 class="text-lg font-bold text-gray-800 mb-4">Top Selling Items</h2>
+      <div class="space-y-4">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center">
+            <span class="w-8 h-8 flex items-center justify-center text-sm font-bold text-white bg-green-600 rounded-full mr-3">1</span>
+            <div>
+              <p class="text-sm font-medium text-gray-800">Rice 5kg</p>
+              <p class="text-xs text-gray-500">Grocery</p>
+            </div>
+          </div>
+          <span class="text-sm font-semibold text-gray-800">542 sold</span>
+        </div>
+        <div class="flex items-center justify-between">
+          <div class="flex items-center">
+            <span class="w-8 h-8 flex items-center justify-center text-sm font-bold text-white bg-green-500 rounded-full mr-3">2</span>
+            <div>
+              <p class="text-sm font-medium text-gray-800">Fresh Milk 1L</p>
+              <p class="text-xs text-gray-500">Dairy</p>
+            </div>
+          </div>
+          <span class="text-sm font-semibold text-gray-800">438 sold</span>
+        </div>
+        <div class="flex items-center justify-between">
+          <div class="flex items-center">
+            <span class="w-8 h-8 flex items-center justify-center text-sm font-bold text-white bg-green-400 rounded-full mr-3">3</span>
+            <div>
+              <p class="text-sm font-medium text-gray-800">Bread</p>
+              <p class="text-xs text-gray-500">Grocery</p>
+            </div>
+          </div>
+          <span class="text-sm font-semibold text-gray-800">395 sold</span>
+        </div>
+        <div class="flex items-center justify-between">
+          <div class="flex items-center">
+            <span class="w-8 h-8 flex items-center justify-center text-sm font-bold text-white bg-green-300 rounded-full mr-3">4</span>
+            <div>
+              <p class="text-sm font-medium text-gray-800">Eggs (10 pack)</p>
+              <p class="text-xs text-gray-500">Dairy</p>
+            </div>
+          </div>
+          <span class="text-sm font-semibold text-gray-800">312 sold</span>
+        </div>
+        <div class="flex items-center justify-between">
+          <div class="flex items-center">
+            <span class="w-8 h-8 flex items-center justify-center text-sm font-bold text-white bg-green-200 rounded-full mr-3">5</span>
+            <div>
+              <p class="text-sm font-medium text-gray-800">Sugar 1kg</p>
+              <p class="text-xs text-gray-500">Grocery</p>
+            </div>
+          </div>
+          <span class="text-sm font-semibold text-gray-800">287 sold</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Low Stock Alert -->
+    <div class="p-5 bg-white border border-gray-200 rounded-lg shadow-md">
+      <h2 class="text-lg font-bold text-gray-800 mb-4">Low Stock Alert</h2>
+      <div class="space-y-3">
+        <div class="flex items-center justify-between p-3 bg-red-50 border border-red-200 rounded-lg">
+          <div>
+            <p class="text-sm font-medium text-red-800">Coconut Oil 750ml</p>
+            <p class="text-xs text-red-600">Grocery</p>
+          </div>
+          <span class="px-2.5 py-1 text-xs font-bold text-white bg-red-500 rounded-full">3 left</span>
+        </div>
+        <div class="flex items-center justify-between p-3 bg-red-50 border border-red-200 rounded-lg">
+          <div>
+            <p class="text-sm font-medium text-red-800">Butter 250g</p>
+            <p class="text-xs text-red-600">Dairy</p>
+          </div>
+          <span class="px-2.5 py-1 text-xs font-bold text-white bg-red-500 rounded-full">5 left</span>
+        </div>
+        <div class="flex items-center justify-between p-3 bg-yellow-50 border border-yellow-200 rounded-lg">
+          <div>
+            <p class="text-sm font-medium text-yellow-800">Lentils 500g</p>
+            <p class="text-xs text-yellow-600">Grocery</p>
+          </div>
+          <span class="px-2.5 py-1 text-xs font-bold text-white bg-yellow-500 rounded-full">8 left</span>
+        </div>
+        <div class="flex items-center justify-between p-3 bg-yellow-50 border border-yellow-200 rounded-lg">
+          <div>
+            <p class="text-sm font-medium text-yellow-800">Yoghurt 500ml</p>
+            <p class="text-xs text-yellow-600">Dairy</p>
+          </div>
+          <span class="px-2.5 py-1 text-xs font-bold text-white bg-yellow-500 rounded-full">12 left</span>
+        </div>
+        <div class="flex items-center justify-between p-3 bg-yellow-50 border border-yellow-200 rounded-lg">
+          <div>
+            <p class="text-sm font-medium text-yellow-800">Biscuits Pack</p>
+            <p class="text-xs text-yellow-600">Snacks</p>
+          </div>
+          <span class="px-2.5 py-1 text-xs font-bold text-white bg-yellow-500 rounded-full">15 left</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
