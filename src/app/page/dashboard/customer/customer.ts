@@ -1,19 +1,29 @@
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core'; // ChangeDetectorRef add kala
-import { FormsModule } from '@angular/forms';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CustomerModel } from '../../../../model/type';
 
 @Component({
   selector: 'app-customer',
-  imports: [FormsModule, CommonModule],
+  imports: [CommonModule],
   templateUrl: './customer.html',
   styleUrl: './customer.css',
 })
 export class Customer implements OnInit {
-  newCustomer: any;
   customerList: Array<CustomerModel> = [];
-  showForm: any;
+  showForm = false;
+
+  customerOject: CustomerModel = {
+    id: 'String',
+    title:'String',
+    name: 'String',
+    dob: {},
+    salary: 0.0,
+    address: 'String',
+    city: "String",
+    province: "String",
+    postalCode: "String"
+  };
 
   constructor(private http: HttpClient, private cdr: ChangeDetectorRef) {}
 
@@ -30,7 +40,32 @@ export class Customer implements OnInit {
     });
   }
 
-  addCustomer() {
-    throw new Error('Method not implemented.');
+  // addCustomer(title: string, custname: string, dob: string, salary: string, address: string, city: string, province: string, postalcode: string) {
+  //   const customer = {
+  //     title,
+  //     custname,
+  //     dob,
+  //     salary: parseFloat(salary),
+  //     address,
+  //     city,
+  //     province,
+  //     postalcode
+  //   };
+
+  //   this.http.post("http://localhost:8080/customer/save", customer).subscribe({
+  //     next: () => {
+  //       this.getAll();
+  //       this.showForm = false;
+  //     }
+  //   });
+  // }
+
+  addCustomer(): void {
+    this.http.post("http://localhost:8080/customer/add-customer", this.customerOject).subscribe(data=>{
+      if(data===true){
+
+      }
+      this.getAll();
+    })
   }
 }
