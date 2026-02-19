@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core'; // ChangeDetectorRef add kala
 import { FormsModule } from '@angular/forms';
 import { CustomerModel } from '../../../../model/type';
 
@@ -10,22 +10,27 @@ import { CustomerModel } from '../../../../model/type';
   templateUrl: './customer.html',
   styleUrl: './customer.css',
 })
-export class Customer {
-newCustomer: any;
-addCustomer() {
-throw new Error('Method not implemented.');
-}
+export class Customer implements OnInit {
+  newCustomer: any;
+  customerList: Array<CustomerModel> = [];
+  showForm: any;
 
-  customerList:Array<CustomerModel> = [];
-showForm: any;
+  constructor(private http: HttpClient, private cdr: ChangeDetectorRef) {}
 
-  constructor(private http: HttpClient) {
+  ngOnInit() {
     this.getAll();
   }
 
   getAll() {
-    this.http.get<CustomerModel[]>("http://localhost:8080/customer/get-all").subscribe(data => {
-      this.customerList = data;
-    })
+    this.http.get<CustomerModel[]>("http://localhost:8080/customer/get-all").subscribe({
+      next: (data) => {
+        this.customerList = data;
+        this.cdr.detectChanges();
+      }
+    });
+  }
+
+  addCustomer() {
+    throw new Error('Method not implemented.');
   }
 }
