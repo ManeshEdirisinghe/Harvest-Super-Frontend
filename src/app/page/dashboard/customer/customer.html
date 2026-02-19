@@ -3,14 +3,14 @@
   <!-- Header -->
   <div class="flex items-center justify-between mb-6">
     <h1 class="text-2xl font-bold text-gray-800">Customers</h1>
-    <button (click)="showForm = !showForm"
-      class="px-4 py-2 text-sm font-medium text-white bg-green-600 rounded-lg hover:bg-green-700 focus:ring-4 focus:ring-green-300 transition shadow-md">
-      {{ showForm ? 'Close Form' : '+ Add Customer' }}
-    </button>
+    <!-- <button (click)="showForm = !showForm" -->
+      <!-- class="px-4 py-2 text-sm font-medium text-white bg-green-600 rounded-lg hover:bg-green-700 focus:ring-4 focus:ring-green-300 transition shadow-md"> -->
+      <!-- {{ showForm ? 'Close Form' : '+ Add Customer' }} -->
+    <!-- </button> -->
   </div>
 
   <!-- Add Customer Form -->
-  @if (showForm) {
+  <!-- @if (showForm) {
     <div class="mb-6 p-6 bg-white border border-gray-200 rounded-2xl shadow-md">
       <h2 class="text-lg font-bold text-gray-800 mb-4">Add New Customer</h2>
       <form (ngSubmit)="addCustomer()" class="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -50,45 +50,43 @@
         </div>
       </form>
     </div>
-  }
+  } -->
 
   <!-- Customers Table -->
   <div class="relative overflow-x-auto shadow-md rounded-lg border border-gray-200">
     <table class="w-full text-sm text-left text-gray-600">
       <thead class="text-xs text-gray-700 uppercase bg-gray-50 border-b border-gray-200">
         <tr>
-          <th scope="col" class="px-6 py-3">#</th>
+          <th scope="col" class="px-6 py-3">ID</th>
+          <th scope="col" class="px-6 py-3">Title</th>
           <th scope="col" class="px-6 py-3">Name</th>
-          <th scope="col" class="px-6 py-3">Email</th>
-          <th scope="col" class="px-6 py-3">Phone</th>
+          <th scope="col" class="px-6 py-3">DOB</th>
+          <th scope="col" class="px-6 py-3">Salary</th>
           <th scope="col" class="px-6 py-3">Address</th>
-          <th scope="col" class="px-6 py-3">Action</th>
+          <th scope="col" class="px-6 py-3">City</th>
+          <th scope="col" class="px-6 py-3">Province</th>
+          <th scope="col" class="px-6 py-3">Postal Code</th>
         </tr>
       </thead>
       <tbody>
-        @for (customer of customers; track customer.name; let i = $index) {
-          <tr class="bg-white border-b border-gray-100 hover:bg-green-50 transition">
-            <td class="px-6 py-4 font-medium text-gray-800">{{ i + 1 }}</td>
-            <td class="px-6 py-4">{{ customer.name }}</td>
-            <td class="px-6 py-4">{{ customer.email }}</td>
-            <td class="px-6 py-4">{{ customer.phone }}</td>
-            <td class="px-6 py-4">{{ customer.address }}</td>
-            <td class="px-6 py-4">
-              <button (click)="deleteCustomer(i)" class="text-red-500 hover:text-red-700 font-medium text-sm">Delete</button>
-            </td>
-          </tr>
-        } @empty {
-          <tr>
-            <td colspan="6" class="px-6 py-8 text-center text-gray-500">No customers found. Click "Add Customer" to get started.</td>
-          </tr>
-        }
+        <tr *ngFor="let customer of customerList" class="bg-white border-b border-gray-100 hover:bg-green-50 transition">
+          <td class="px-6 py-4 font-medium text-gray-800">{{customer.id}}</td>
+          <td class="px-6 py-4">{{customer.title}}</td>
+          <td class="px-6 py-4">{{customer.Custname}}</td>
+          <td class="px-6 py-4">{{customer.dob}}</td>
+          <td class="px-6 py-4">{{customer.salary}}</td>
+          <td class="px-6 py-4">{{customer.address}}</td>
+          <td class="px-6 py-4">{{customer.city}}</td>
+          <td class="px-6 py-4">{{customer.province}}</td>
+          <td class="px-6 py-4">{{customer.postalcode}}</td>
+        </tr>
       </tbody>
     </table>
   </div>
 
   <!-- Summary -->
   <div class="mt-4 text-sm text-gray-500">
-    Total Customers: <span class="font-semibold text-gray-800">{{ customers.length }}</span>
+    Total Customers: <span class="font-semibold text-gray-800">{{ customerList?.length }}</span>
   </div>
 
 </div>

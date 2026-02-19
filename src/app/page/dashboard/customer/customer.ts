@@ -1,33 +1,26 @@
+import { CommonModule } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { CustomerModel } from '../../../../model/type';
 
 @Component({
   selector: 'app-customer',
-  imports: [FormsModule],
+  imports: [FormsModule, CommonModule],
   templateUrl: './customer.html',
   styleUrl: './customer.css',
 })
 export class Customer {
-  showForm = false;
 
-  newCustomer = {
-    name: '',
-    email: '',
-    phone: '',
-    address: '',
-  };
+  customerList:Array<CustomerModel> = [];
 
-  customers: { name: string; email: string; phone: string; address: string }[] = [];
-
-  addCustomer() {
-    if (this.newCustomer.name && this.newCustomer.email && this.newCustomer.phone) {
-      this.customers.push({ ...this.newCustomer });
-      this.newCustomer = { name: '', email: '', phone: '', address: '' };
-      this.showForm = false;
-    }
+  constructor(private http: HttpClient) {
+    this.getAll();
   }
 
-  deleteCustomer(index: number) {
-    this.customers.splice(index, 1);
+  getAll() {
+    this.http.get<CustomerModel[]>("http://localhost:8080/customer/get-all").subscribe(data => {
+      this.customerList = data;
+    })
   }
 }
