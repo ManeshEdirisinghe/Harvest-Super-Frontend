@@ -3,42 +3,65 @@
   <!-- Header -->
   <div class="flex items-center justify-between mb-6">
     <h1 class="text-2xl font-bold text-gray-800">Customers</h1>
-    <!-- <button (click)="showForm = !showForm" -->
-      <!-- class="px-4 py-2 text-sm font-medium text-white bg-green-600 rounded-lg hover:bg-green-700 focus:ring-4 focus:ring-green-300 transition shadow-md"> -->
-      <!-- {{ showForm ? 'Close Form' : '+ Add Customer' }} -->
-    <!-- </button> -->
+    <button (click)="showForm = !showForm"
+      class="px-4 py-2 text-sm font-medium text-white bg-green-600 rounded-lg hover:bg-green-700 focus:ring-4 focus:ring-green-300 transition shadow-md">
+      {{ showForm ? 'Close Form' : '+ Add Customer' }}
+    </button>
   </div>
 
   <!-- Add Customer Form -->
-  <!-- @if (showForm) {
+  @if (showForm) {
     <div class="mb-6 p-6 bg-white border border-gray-200 rounded-2xl shadow-md">
       <h2 class="text-lg font-bold text-gray-800 mb-4">Add New Customer</h2>
-      <form (ngSubmit)="addCustomer()" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <form (ngSubmit)="addCustomer()" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div>
+          <label class="block mb-1 text-sm font-medium text-gray-700">Title</label>
+          <input type="text" [(ngModel)]="newCustomer.title" name="title" required
+            class="w-full px-3 py-2.5 text-sm text-gray-900 bg-gray-50 border border-gray-300 rounded-lg focus:ring-green-500 focus:border-green-500"
+            placeholder="Enter title">
+        </div>
         <div>
           <label class="block mb-1 text-sm font-medium text-gray-700">Name</label>
-          <input type="text" [(ngModel)]="newCustomer.name" name="name" required
+          <input type="text" [(ngModel)]="newCustomer.custname" name="custname" required
             class="w-full px-3 py-2.5 text-sm text-gray-900 bg-gray-50 border border-gray-300 rounded-lg focus:ring-green-500 focus:border-green-500"
             placeholder="Enter customer name">
         </div>
         <div>
-          <label class="block mb-1 text-sm font-medium text-gray-700">Email</label>
-          <input type="email" [(ngModel)]="newCustomer.email" name="email" required
-            class="w-full px-3 py-2.5 text-sm text-gray-900 bg-gray-50 border border-gray-300 rounded-lg focus:ring-green-500 focus:border-green-500"
-            placeholder="Enter email address">
+          <label class="block mb-1 text-sm font-medium text-gray-700">Date of Birth</label>
+          <input type="date" [(ngModel)]="newCustomer.dob" name="dob" required
+            class="w-full px-3 py-2.5 text-sm text-gray-900 bg-gray-50 border border-gray-300 rounded-lg focus:ring-green-500 focus:border-green-500">
         </div>
         <div>
-          <label class="block mb-1 text-sm font-medium text-gray-700">Phone</label>
-          <input type="tel" [(ngModel)]="newCustomer.phone" name="phone" required
+          <label class="block mb-1 text-sm font-medium text-gray-700">Salary</label>
+          <input type="number" [(ngModel)]="newCustomer.salary" name="salary" required
             class="w-full px-3 py-2.5 text-sm text-gray-900 bg-gray-50 border border-gray-300 rounded-lg focus:ring-green-500 focus:border-green-500"
-            placeholder="Enter phone number">
+            placeholder="Enter salary">
         </div>
         <div>
           <label class="block mb-1 text-sm font-medium text-gray-700">Address</label>
-          <input type="text" [(ngModel)]="newCustomer.address" name="address"
+          <input type="text" [(ngModel)]="newCustomer.address" name="address" required
             class="w-full px-3 py-2.5 text-sm text-gray-900 bg-gray-50 border border-gray-300 rounded-lg focus:ring-green-500 focus:border-green-500"
             placeholder="Enter address">
         </div>
-        <div class="md:col-span-2 flex gap-3 mt-2">
+        <div>
+          <label class="block mb-1 text-sm font-medium text-gray-700">City</label>
+          <input type="text" [(ngModel)]="newCustomer.city" name="city" required
+            class="w-full px-3 py-2.5 text-sm text-gray-900 bg-gray-50 border border-gray-300 rounded-lg focus:ring-green-500 focus:border-green-500"
+            placeholder="Enter city">
+        </div>
+        <div>
+          <label class="block mb-1 text-sm font-medium text-gray-700">Province</label>
+          <input type="text" [(ngModel)]="newCustomer.province" name="province" required
+            class="w-full px-3 py-2.5 text-sm text-gray-900 bg-gray-50 border border-gray-300 rounded-lg focus:ring-green-500 focus:border-green-500"
+            placeholder="Enter province">
+        </div>
+        <div>
+          <label class="block mb-1 text-sm font-medium text-gray-700">Postal Code</label>
+          <input type="text" [(ngModel)]="newCustomer.postalcode" name="postalcode" required
+            class="w-full px-3 py-2.5 text-sm text-gray-900 bg-gray-50 border border-gray-300 rounded-lg focus:ring-green-500 focus:border-green-500"
+            placeholder="Enter postal code">
+        </div>
+        <div class="lg:col-span-3 md:col-span-2 flex gap-3 mt-2">
           <button type="submit"
             class="px-5 py-2.5 text-sm font-semibold text-white bg-green-600 rounded-lg hover:bg-green-700 focus:ring-4 focus:ring-green-300 transition shadow-md">
             Save Customer
@@ -50,7 +73,7 @@
         </div>
       </form>
     </div>
-  } -->
+  }
 
   <!-- Customers Table -->
   <div class="relative overflow-x-auto shadow-md rounded-lg border border-gray-200">
@@ -72,13 +95,13 @@
         <tr *ngFor="let customer of customerList" class="bg-white border-b border-gray-100 hover:bg-green-50 transition">
           <td class="px-6 py-4 font-medium text-gray-800">{{customer.id}}</td>
           <td class="px-6 py-4">{{customer.title}}</td>
-          <td class="px-6 py-4">{{customer.Custname}}</td>
+          <td class="px-6 py-4">{{customer.name}}</td>
           <td class="px-6 py-4">{{customer.dob}}</td>
           <td class="px-6 py-4">{{customer.salary}}</td>
           <td class="px-6 py-4">{{customer.address}}</td>
           <td class="px-6 py-4">{{customer.city}}</td>
           <td class="px-6 py-4">{{customer.province}}</td>
-          <td class="px-6 py-4">{{customer.postalcode}}</td>
+          <td class="px-6 py-4">{{customer.postalCode}}</td>
         </tr>
       </tbody>
     </table>

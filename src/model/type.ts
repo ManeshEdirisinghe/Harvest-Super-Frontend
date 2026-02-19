@@ -1,13 +1,13 @@
 export interface CustomerModel {
   id: String;
   title: String;
-  Custname: string;
+  name: string;
   dob: object;
   salary: number;
   address: string;
   city: string;
   province: string;
-  postalcode: string;
+  postalCode: string;
 }
 
 // export interface Item {
