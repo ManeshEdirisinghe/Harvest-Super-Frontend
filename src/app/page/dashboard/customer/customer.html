@@ -80,6 +80,7 @@
     <table class="w-full text-sm text-left text-gray-600">
       <thead class="text-xs text-gray-700 uppercase bg-gray-50 border-b border-gray-200">
         <tr>
+          <th scope="col" class="px-6 py-3">No.</th>
           <th scope="col" class="px-6 py-3">ID</th>
           <th scope="col" class="px-6 py-3">Title</th>
           <th scope="col" class="px-6 py-3">Name</th>
@@ -92,7 +93,8 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let customer of customerList" class="bg-white border-b border-gray-100 hover:bg-green-50 transition">
+        <tr *ngFor="let customer of customerList index as i" class="bg-white border-b border-gray-100 hover:bg-green-50 transition">
+          <td class="px-6 py-4 font-medium text-gray-800">{{i + 1}}</td>
           <td class="px-6 py-4 font-medium text-gray-800">{{customer.id}}</td>
           <td class="px-6 py-4">{{customer.title}}</td>
           <td class="px-6 py-4">{{customer.name}}</td>
