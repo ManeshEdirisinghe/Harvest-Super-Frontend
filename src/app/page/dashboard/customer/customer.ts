@@ -11,13 +11,13 @@ import { CustomerModel } from '../../../../model/type';
   styleUrl: './customer.css',
 })
 export class Customer {
-  newCustomer: any;
-  addCustomer() {
-    throw new Error('Method not implemented.');
-  }
+newCustomer: any;
+addCustomer() {
+throw new Error('Method not implemented.');
+}
 
-  customerList: Array<CustomerModel> = [];
-  showForm: any;
+  customerList:Array<CustomerModel> = [];
+showForm: any;
 
   constructor(private http: HttpClient) {
     this.getAll();
