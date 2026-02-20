@@ -1,34 +1,79 @@
-import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { DecimalPipe } from '@angular/common';
+// import { CommonModule } from '@angular/common';
+// import { HttpClient } from '@angular/common/http';
+// import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+// import { FormsModule } from '@angular/forms';
+// import Swal from 'sweetalert2';
 
-@Component({
-  selector: 'app-item',
-  imports: [FormsModule, DecimalPipe],
-  templateUrl: './item.html',
-  styleUrl: './item.css',
-})
-export class Item {
-  showForm = false;
+// export interface ItemModel {
+//   code: string;
+//   description: string;
+//   packSize: string;
+//   unitPrice: number;
+//   qtyOnHand: number;
+// }
 
-  newItem = {
-    name: '',
-    category: '',
-    price: 0,
-    qty: 0,
-  };
+// @Component({
+//   selector: 'app-item',
+//   standalone: true,
+//   imports: [CommonModule, FormsModule],
+//   templateUrl: './item.html',
+//   styleUrl: './item.css',
+// })
+// export class Item implements OnInit {
+//   itemList: Array<ItemModel> = [];
+//   showForm = false;
 
-  items: { name: string; category: string; price: number; qty: number }[] = [];
+//   itemObj: ItemModel = {
+//     code: '',
+//     description: '',
+//     packSize: '',
+//     unitPrice: 0,
+//     qtyOnHand: 0
+//   };
 
-  addItem() {
-    if (this.newItem.name && this.newItem.category && this.newItem.price > 0) {
-      this.items.push({ ...this.newItem });
-      this.newItem = { name: '', category: '', price: 0, qty: 0 };
-      this.showForm = false;
-    }
-  }
+//   constructor(private http: HttpClient, private cdr: ChangeDetectorRef) {}
 
-  deleteItem(index: number) {
-    this.items.splice(index, 1);
-  }
-}
+//   ngOnInit() {
+//     this.getAllItems();
+//   }
+
+//   getAllItems() {
+//     this.http.get<ItemModel[]>("http://localhost:8080/item/get-all").subscribe({
+//       next: (data) => {
+//         this.itemList = data;
+//         this.cdr.detectChanges();
+//       },
+//       error: (err) => {
+//         console.error("Error fetching items:", err);
+//       }
+//     });
+//   }
+
+//   toggleAddForm() {
+//     this.showForm = !this.showForm;
+//   }
+
+//   addItem(): void {
+//     console.log("Sending Item:", this.itemObj);
+
+//     this.http.post("http://localhost:8080/item/add-item", this.itemObj).subscribe({
+//       next: (data) => {
+//         console.log("Response:", data);
+
+//         if (data === true) {
+//           Swal.fire({
+//             title: "Success!",
+//             text: `Item ${this.itemObj.code} - ${this.itemObj.description} Added Successfully!!`,
+//             icon: "success"
+//           });
+
+//           this.getAllItems();
+//           this.showForm = false;
+//         }
+//       }
+
+//     });
+//   }
+
+
+// }

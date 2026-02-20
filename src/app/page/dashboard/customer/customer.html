@@ -3,7 +3,7 @@
   <!-- Header -->
   <div class="flex items-center justify-between mb-6">
     <h1 class="text-2xl font-bold text-gray-800">Customers</h1>
-    <button (click)="showForm = !showForm"
+    <button (click)="toggleAddForm()"
       class="px-4 py-2 text-sm font-medium text-white bg-green-600 rounded-lg hover:bg-green-700 focus:ring-4 focus:ring-green-300 transition shadow-md">
       {{ showForm ? 'Close Form' : '+ Add Customer' }}
     </button>
@@ -11,69 +11,140 @@
 
   <!-- Add Customer Form -->
   @if (showForm) {
-    <div class="mb-6 p-6 bg-white border border-gray-200 rounded-2xl shadow-md">
-      <h2 class="text-lg font-bold text-gray-800 mb-4">Add New Customer</h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+  <div class="bg-white border border-default-medium rounded-lg p-6 shadow-md mb-6">
+    <div class="flex justify-between items-center mb-6">
+      <h2 class="text-xl font-bold text-heading">Add New Customer</h2>
+      <button (click)="toggleAddForm()" class="text-body hover:text-heading transition-all">
+        <svg class="w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+        </svg>
+      </button>
+    </div>
+
+    <div class="space-y-4">
+      <!-- ID Field -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
-          <label class="block mb-1 text-sm font-medium text-gray-700">Title</label>
-          <input #titleInput type="text"
-          [{ngModel}]=
-            class="w-full px-3 py-2.5 text-sm text-gray-900 bg-gray-50 border border-gray-300 rounded-lg focus:ring-green-500 focus:border-green-500"
-            placeholder="Enter title">
+          <label class="block text-sm font-semibold text-heading mb-2">Customer ID</label>
+          <input
+            type="text"
+            [(ngModel)]="customerObj.id"
+            placeholder="Enter customer ID"
+            class="w-full px-4 py-2.5 bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-lg focus:ring-2 focus:ring-brand focus:border-transparent"
+          />
         </div>
+
+        <!-- Name Field -->
         <div>
-          <label class="block mb-1 text-sm font-medium text-gray-700">Name</label>
-          <input #nameInput type="text"
-            class="w-full px-3 py-2.5 text-sm text-gray-900 bg-gray-50 border border-gray-300 rounded-lg focus:ring-green-500 focus:border-green-500"
-            placeholder="Enter customer name">
-        </div>
-        <div>
-          <label class="block mb-1 text-sm font-medium text-gray-700">Date of Birth</label>
-          <input #dobInput type="date"
-            class="w-full px-3 py-2.5 text-sm text-gray-900 bg-gray-50 border border-gray-300 rounded-lg focus:ring-green-500 focus:border-green-500">
-        </div>
-        <div>
-          <label class="block mb-1 text-sm font-medium text-gray-700">Salary</label>
-          <input #salaryInput type="number"
-            class="w-full px-3 py-2.5 text-sm text-gray-900 bg-gray-50 border border-gray-300 rounded-lg focus:ring-green-500 focus:border-green-500"
-            placeholder="Enter salary">
-        </div>
-        <div>
-          <label class="block mb-1 text-sm font-medium text-gray-700">Address</label>
-          <input #addressInput type="text"
-            class="w-full px-3 py-2.5 text-sm text-gray-900 bg-gray-50 border border-gray-300 rounded-lg focus:ring-green-500 focus:border-green-500"
-            placeholder="Enter address">
-        </div>
-        <div>
-          <label class="block mb-1 text-sm font-medium text-gray-700">City</label>
-          <input #cityInput type="text"
-            class="w-full px-3 py-2.5 text-sm text-gray-900 bg-gray-50 border border-gray-300 rounded-lg focus:ring-green-500 focus:border-green-500"
-            placeholder="Enter city">
-        </div>
-        <div>
-          <label class="block mb-1 text-sm font-medium text-gray-700">Province</label>
-          <input #provinceInput type="text"
-            class="w-full px-3 py-2.5 text-sm text-gray-900 bg-gray-50 border border-gray-300 rounded-lg focus:ring-green-500 focus:border-green-500"
-            placeholder="Enter province">
-        </div>
-        <div>
-          <label class="block mb-1 text-sm font-medium text-gray-700">Postal Code</label>
-          <input #postalCodeInput type="text"
-            class="w-full px-3 py-2.5 text-sm text-gray-900 bg-gray-50 border border-gray-300 rounded-lg focus:ring-green-500 focus:border-green-500"
-            placeholder="Enter postal code">
-        </div>
-        <div class="lg:col-span-3 md:col-span-2 flex gap-3 mt-2">
-          <button (click)="addCustomer(titleInput.value, nameInput.value, dobInput.value, salaryInput.value, addressInput.value, cityInput.value, provinceInput.value, postalCodeInput.value)"
-            class="px-5 py-2.5 text-sm font-semibold text-white bg-green-600 rounded-lg hover:bg-green-700 focus:ring-4 focus:ring-green-300 transition shadow-md">
-            Save Customer
-          </button>
-          <button (click)="showForm = false"
-            class="px-5 py-2.5 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition">
-            Cancel
-          </button>
+          <label class="block text-sm font-semibold text-heading mb-2">Name</label>
+          <input
+            type="text"
+            [(ngModel)]="customerObj.name"
+            placeholder="Enter customer name"
+            class="w-full px-4 py-2.5 bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-lg focus:ring-2 focus:ring-brand focus:border-transparent"
+          />
         </div>
       </div>
+
+      <!-- Title Field -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div>
+          <label class="block text-sm font-semibold text-heading mb-2">Title</label>
+          <input
+            type="text"
+            [(ngModel)]="customerObj.title"
+            placeholder="Enter title (Mr./Ms./Dr.)"
+            class="w-full px-4 py-2.5 bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-lg focus:ring-2 focus:ring-brand focus:border-transparent"
+          />
+        </div>
+
+        <!-- Date of Birth Field -->
+        <div>
+          <label class="block text-sm font-semibold text-heading mb-2">Date of Birth</label>
+          <input
+            type="date"
+            [(ngModel)]="customerObj.dob"
+            class="w-full px-4 py-2.5 bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-lg focus:ring-2 focus:ring-brand focus:border-transparent"
+          />
+        </div>
+      </div>
+
+      <!-- Address Field -->
+      <div>
+        <label class="block text-sm font-semibold text-heading mb-2">Address</label>
+        <input
+          type="text"
+          [(ngModel)]="customerObj.address"
+          placeholder="Enter street address"
+          class="w-full px-4 py-2.5 bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-lg focus:ring-2 focus:ring-brand focus:border-transparent"
+        />
+      </div>
+
+      <!-- City and Province Fields -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div>
+          <label class="block text-sm font-semibold text-heading mb-2">City</label>
+          <input
+            type="text"
+            [(ngModel)]="customerObj.city"
+            placeholder="Enter city"
+            class="w-full px-4 py-2.5 bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-lg focus:ring-2 focus:ring-brand focus:border-transparent"
+          />
+        </div>
+
+        <div>
+          <label class="block text-sm font-semibold text-heading mb-2">Province</label>
+          <input
+            type="text"
+            [(ngModel)]="customerObj.province"
+            placeholder="Enter province"
+            class="w-full px-4 py-2.5 bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-lg focus:ring-2 focus:ring-brand focus:border-transparent"
+          />
+        </div>
+      </div>
+
+      <!-- Postal Code and Salary Fields -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div>
+          <label class="block text-sm font-semibold text-heading mb-2">Postal Code</label>
+          <input
+            type="text"
+            [(ngModel)]="customerObj.postalCode"
+            placeholder="Enter postal code"
+            class="w-full px-4 py-2.5 bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-lg focus:ring-2 focus:ring-brand focus:border-transparent"
+          />
+        </div>
+
+        <div>
+          <label class="block text-sm font-semibold text-heading mb-2">Salary</label>
+          <input
+            type="number"
+            [(ngModel)]="customerObj.salary"
+            placeholder="Enter salary"
+            class="w-full px-4 py-2.5 bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-lg focus:ring-2 focus:ring-brand focus:border-transparent"
+          />
+        </div>
+      </div>
+
+      <!-- Form Actions -->
+      <div class="flex gap-3 pt-4">
+        <button
+          type="button"
+          (click)="addCustomer()"
+          class="px-6 py-2.5 bg-brand text-white font-semibold rounded-lg hover:bg-brand-strong transition-all disabled:bg-gray-400 disabled:cursor-not-allowed"
+        >
+          Save Customer
+        </button>
+        <button
+          type="button"
+          (click)="toggleAddForm()"
+          class="px-6 py-2.5 bg-neutral-secondary-medium text-heading font-semibold rounded-lg hover:bg-neutral-tertiary transition-all"
+        >
+          Cancel
+        </button>
+      </div>
     </div>
+  </div>
   }
 
   <!-- Customers Table -->

@@ -1,11 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { CustomerModel } from '../../../../model/type';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-customer',
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './customer.html',
   styleUrl: './customer.css',
 })
@@ -13,16 +15,16 @@ export class Customer implements OnInit {
   customerList: Array<CustomerModel> = [];
   showForm = false;
 
-  customerOject: CustomerModel = {
-    id: 'String',
-    title:'String',
-    name: 'String',
+  customerObj: CustomerModel = {
+    id: '',
+    title: '',
+    name: '',
     dob: {},
-    salary: 0.0,
-    address: 'String',
-    city: "String",
-    province: "String",
-    postalCode: "String"
+    salary: 0,
+    address: '',
+    city: '',
+    province: '',
+    postalCode: ''
   };
 
   constructor(private http: HttpClient, private cdr: ChangeDetectorRef) {}
@@ -40,30 +42,20 @@ export class Customer implements OnInit {
     });
   }
 
-  // addCustomer(title: string, custname: string, dob: string, salary: string, address: string, city: string, province: string, postalcode: string) {
-  //   const customer = {
-  //     title,
-  //     custname,
-  //     dob,
-  //     salary: parseFloat(salary),
-  //     address,
-  //     city,
-  //     province,
-  //     postalcode
-  //   };
+  toggleAddForm() {
+    this.showForm = !this.showForm;
+  }
 
-  //   this.http.post("http://localhost:8080/customer/save", customer).subscribe({
-  //     next: () => {
-  //       this.getAll();
-  //       this.showForm = false;
-  //     }
-  //   });
-  // }
-
-  addCustomer(): void {
-    this.http.post("http://localhost:8080/customer/add-customer", this.customerOject).subscribe(data=>{
-      if(data===true){
-
+addCustomer(): void {
+    console.log(this.customerObj);
+    this.http.post("http://localhost:8080/customer/add-customer", this.customerObj).subscribe(data => {
+      console.log(data);
+      if (data === true) {
+        Swal.fire({
+          title: "Good job! "+this.customerObj.name+" Added Successfully!!",
+          text: "You clicked the button!",
+          icon: "success"
+        });
       }
       this.getAll();
     })
