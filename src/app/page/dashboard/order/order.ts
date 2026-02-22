@@ -2,10 +2,12 @@ import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { OrderModel, CustomerModel } from '../../../../model/type'; // Import both models
 import Swal from 'sweetalert2';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-order',
-  // imports: [CommonModule, FormsModule] ...
+  imports: [CommonModule, FormsModule] ...
 })
 export class Order implements OnInit {
   orderList: Array<OrderModel> = [];
@@ -13,8 +15,8 @@ export class Order implements OnInit {
   showForm = false;
 
   orderObj: OrderModel = {
-    orderId: '',
-    orderDate: new Date().toISOString().split('T')[0],
+    id: '',
+    date: new Date().toISOString().split('T')[0],
     custId: ''
   };
 
@@ -38,18 +40,25 @@ export class Order implements OnInit {
     });
   }
 
-  addOrder(): void {
-    this.http.post("http://localhost:8080/order/add-order", this.orderObj).subscribe(data => {
-      if (data === true) {
-        Swal.fire("Success", "Order Placed Successfully!", "success");
-        this.getAllOrders();
-        this.toggleAddForm();
-        this.resetForm();
-      }
-    });
-  }
+  orderObj: OrderModel = {
+  id: '',
+  date: new Date().toISOString().split('T')[0],
+  custId: ''
+};
 
-  resetForm() {
-    this.orderObj = { orderId: '', orderDate: new Date().toISOString().split('T')[0], custId: '' };
-  }
+addOrder(): void {
+  console.log("Saving Order:", this.orderObj);
+  this.http.post("http://localhost:8080/order/add-order", this.orderObj).subscribe(data => {
+    if (data === true) {
+      Swal.fire({
+        title: "Order Placed!",
+        text: `Order ${this.orderObj.id} for Customer ${this.orderObj.custId} saved.`,
+        icon: "success"
+      });
+      this.getAllOrders();
+      this.showForm = false;
+    }
+  });
+}
+
 }
