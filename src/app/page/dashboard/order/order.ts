@@ -1,61 +1,55 @@
-import { CommonModule } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { OrderModel } from '../../../../model/type';
+import { HttpClient } from '@angular/common/http';
+import { OrderModel, CustomerModel } from '../../../../model/type'; // Import both models
 import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-order',
-  standalone: true,
-  imports: [CommonModule, FormsModule],
-  templateUrl: './order.html',
-  styleUrl: './order.css',
+  // imports: [CommonModule, FormsModule] ...
 })
 export class Order implements OnInit {
   orderList: Array<OrderModel> = [];
+  customerList: Array<CustomerModel> = []; // Customer ලා තෝරන්න ලිස්ට් එකක්
   showForm = false;
 
   orderObj: OrderModel = {
-    id: 0,
-    date: new Date().toISOString().split('T')[0] // අද දිනය default ලෙස ඇතුළත් කිරීම
+    orderId: '',
+    orderDate: new Date().toISOString().split('T')[0],
+    custId: ''
   };
 
   constructor(private http: HttpClient, private cdr: ChangeDetectorRef) {}
 
   ngOnInit() {
     this.getAllOrders();
+    this.getAllCustomers(); // Customer ලා ටිකත් මුලින්ම load කරගන්නවා
   }
 
-  getAllOrders() {
-    this.http.get<OrderModel[]>("http://localhost:8080/order/get-all").subscribe({
-      next: (data) => {
-        this.orderList = data;
-        this.cdr.detectChanges();
-      }
+  getAllCustomers() {
+    this.http.get<CustomerModel[]>("http://localhost:8080/customer/get-all").subscribe(data => {
+      this.customerList = data;
     });
   }
 
-  toggleAddForm() {
-    this.showForm = !this.showForm;
+  getAllOrders() {
+    this.http.get<OrderModel[]>("http://localhost:8080/order/get-all").subscribe(data => {
+      this.orderList = data;
+      this.cdr.detectChanges();
+    });
   }
 
   addOrder(): void {
     this.http.post("http://localhost:8080/order/add-order", this.orderObj).subscribe(data => {
       if (data === true) {
-        Swal.fire({
-          title: "Order Saved!",
-          text: "Order ID: " + this.orderObj.id + " has been added.",
-          icon: "success"
-        });
+        Swal.fire("Success", "Order Placed Successfully!", "success");
         this.getAllOrders();
-        this.showForm = false;
+        this.toggleAddForm();
         this.resetForm();
       }
     });
   }
 
   resetForm() {
-    this.orderObj = { id: 0, date: new Date().toISOString().split('T')[0] };
+    this.orderObj = { orderId: '', orderDate: new Date().toISOString().split('T')[0], custId: '' };
   }
 }
