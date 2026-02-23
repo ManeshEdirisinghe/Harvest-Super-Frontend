@@ -20,7 +20,7 @@ export class Order implements OnInit {
   orderObj: OrderModel = {
   OrderId: 0,
   date: new Date().toISOString().split('T')[0],
-  custId: ''
+  custID: ''
 };
 
   constructor(private http: HttpClient, private cdr: ChangeDetectorRef) {}
