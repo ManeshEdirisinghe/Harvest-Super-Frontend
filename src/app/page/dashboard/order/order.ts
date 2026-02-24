@@ -18,7 +18,7 @@ export class Order implements OnInit {
   showForm = false;
 
   orderObj: OrderModel = {
-  orderId: 0,
+  OrderId: 0,
   date: new Date().toISOString().split('T')[0],
   custID: ''
 };
@@ -60,7 +60,7 @@ export class Order implements OnInit {
 
 resetForm() {
   this.orderObj = {
-    orderId: 0,
+    OrderId: 0,
     date: new Date().toISOString().split('T')[0],
     custID: ''
   };
