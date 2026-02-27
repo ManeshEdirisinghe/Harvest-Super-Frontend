@@ -23,3 +23,10 @@ export interface OrderModel {
   date: any;
   custID: string;
 }
+
+export interface OrderDetailModel {
+  orderId: string;
+  // itemCode: string;
+  // qty: number;
+  // discount: number;
+}
