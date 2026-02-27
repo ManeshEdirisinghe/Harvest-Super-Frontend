@@ -26,7 +26,7 @@ export interface OrderModel {
 
 export interface OrderDetailModel {
   orderId: string;
-  // itemCode: string;
+  itemCode: string;
   // qty: number;
   // discount: number;
 }
