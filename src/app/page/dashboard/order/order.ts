@@ -76,7 +76,7 @@ export class Order implements OnInit {
       return;
     }
 
-    this.tempOrderDetail.orderId = this.orderObj.; // Sync Order ID
+    this.tempOrderDetail.orderId = this.orderObj.orderId; // Sync Order ID
     this.cartItems.push({ ...this.tempOrderDetail }); // Push a copy to the array
 
     // Reset temp item fields
