@@ -19,7 +19,7 @@ export interface ItemModel {
 }
 
 export interface OrderModel {
-  id: string;      
+  orderId: string;
   date: string;
   custId: string;
 }

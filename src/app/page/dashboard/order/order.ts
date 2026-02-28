@@ -25,7 +25,7 @@ export class Order implements OnInit {
 
   // Main Order Object
   orderObj: OrderModel = {
-    id: '',
+    orderId: '',
     date: new Date().toISOString().split('T')[0], // Defaults to today
     custId: ''
   };
@@ -76,7 +76,7 @@ export class Order implements OnInit {
       return;
     }
 
-    this.tempOrderDetail.orderId = this.orderObj.id; // Sync Order ID
+    this.tempOrderDetail.orderId = this.orderObj.; // Sync Order ID
     this.cartItems.push({ ...this.tempOrderDetail }); // Push a copy to the array
 
     // Reset temp item fields
