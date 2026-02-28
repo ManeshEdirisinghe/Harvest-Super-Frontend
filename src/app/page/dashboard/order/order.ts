@@ -95,7 +95,7 @@ export class Order implements OnInit {
 
   // Submit the final Order and Order Details to the backend
   placeOrder(): void {
-    if (!this.orderObj.id || !this.orderObj.custId) {
+    if (!this.orderObj.orderId || !this.orderObj.custId) {
       Swal.fire("Warning", "Please fill in Order ID and select a Customer!", "warning");
       return;
     }
