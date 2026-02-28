@@ -130,7 +130,7 @@ export class Order implements OnInit {
   }
 
   resetForm() {
-    this.orderObj = { id: '', date: new Date().toISOString().split('T')[0], custId: '' };
+    this.orderObj = { orderId: '', date: new Date().toISOString().split('T')[0], custId: '' };
     this.cartItems = [];
   }
 }
