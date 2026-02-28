@@ -19,8 +19,8 @@ export interface ItemModel {
 }
 
 export interface OrderModel {
-  orderId: number;
-  date: any;
+  id: string;      
+  date: string;
   custId: string;
 }
 
