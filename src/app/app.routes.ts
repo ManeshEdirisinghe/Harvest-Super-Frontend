@@ -8,6 +8,7 @@ import { DashRoot } from './page/dashboard/dash-root/dash-root';
 import { Customer } from './page/dashboard/customer/customer';
 import { Item } from './page/dashboard/item/item';
 import { Order } from './page/dashboard/order/order';
+import { OrderDetails } from './page/dashboard/order-details/order-details';
 
 
 
@@ -40,6 +41,10 @@ export const routes: Routes = [
       {
         path: "order",
         component: Order
+      },
+      {
+        path: "order-details",
+        component: OrderDetails
       }
     ]
   }
