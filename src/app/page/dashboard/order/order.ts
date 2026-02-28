@@ -81,7 +81,7 @@ export class Order implements OnInit {
 
     // Reset temp item fields
     this.tempOrderDetail = {
-      orderId: this.orderObj.id,
+      orderId: this.orderObj.orderId,
       itemCode: '',
       qty: 1,
       discount: 0
